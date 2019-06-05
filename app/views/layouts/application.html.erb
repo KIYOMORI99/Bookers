@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <header>
+        <div class="header-content clearfix">
+            <h1 class="header-logo">Bookers</h1>
+        <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+	    <nav class="header-nav">
+		    <ul class="header-nav-list">
+			    <li class="header-nav-item nav-home"><%= link_to (user_path(current_user.id)), :class=>"glyphicon glyphicon-home" do %> Home<% end %></li>
+			    <li class="header-nav-item nav-users"><%= link_to users_path, :class=>"glyphicon glyphicon-user" do %> Users<% end %></li>
+			    <li class="header-nav-item nav-books"><%= link_to post_books_path, :class=>"glyphicon glyphicon-book" do %> Books<% end %></li>
+			    <li class="header-nav-item nav-logout"><%= link_to destroy_user_session_path, method: :delete, :class=>"glyphicon glyphicon-log-out" do %>Log out<% end %></li>
+		    </ul>
+		</nav>
+        <% else %>
+  <!-- ユーザーがログインしていなかった時の処理 -->
+        <nav class="header-nav">
+		    <ul class="header-nav-list">
+		      <li class="header-nav-item"><p><%= link_to root_path, :class=>"glyphicon glyphicon-home" do %> HOME</p><% end %></li>
+		      <li class="header-nav-item"><p><%= link_to top_about_path, :class=>"glyphicon glyphicon-link" do %> about</p><% end %></li>
+			    <li class="header-nav-item"><p><%= link_to new_user_registration_path, :class=>"glyphicon glyphicon-edit" do %> Sign_up</p><% end %></li>
+			    <li class="header-nav-item"><p><%= link_to new_user_session_path, :class=>"glyphicon glyphicon-log-in" do %> login</p><% end %></li>
+		    </ul>
+	    </nav>
+	    <% end %>
+	    </div>
+    
+    </header>
+    <main>
+
+    <div class="container">
+            <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+          <%= yield %>
+    </div>
+    </main>
+    <footer>
+      <div class="footer-content clearfix">
+        <h4>CopyRight Infratop.inc</h4>
+      </div>
+    </footer>      
+  </body>
+</html>

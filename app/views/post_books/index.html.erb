@@ -1,0 +1,25 @@
+<% @post_book.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger">
+        <%= message %>
+     </div>
+<% end %>
+<div class="col-xs-3">
+    <%= render :partial => "layouts/sidebar" %>
+</div>
+
+<div class="col-xs-9">
+    <table class="table table-hover">
+        <tr>
+            <th></th>
+            <th>TITLE</th>
+            <th>OPINION</th>
+        </tr>
+        <% @post_books.each do |post_book| %>
+        <tr>
+            <td><%= link_to user_path(post_book.user.id) do %><%= attachment_image_tag post_book.user, :profile_image,  size: "30x30", format: 'jpeg', fallback: "no_image.jpg" %><% end %></td>
+            <td><%= link_to post_book_path(post_book.id) do %><%= post_book.title %><% end %></td>
+            <td><%= post_book.opinion %></td>
+        </tr>
+        <% end %>
+    </table>
+</div>

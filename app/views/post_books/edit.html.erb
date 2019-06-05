@@ -1,0 +1,21 @@
+<% @post_book.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger">
+        <%= message %>
+     </div>
+<% end %>
+
+<h1>Editing Book</h1>
+
+<div class="post-form">
+		<%= form_for(@post_book) do |f| %>
+            <h3>TITLE</h3>
+            <%= f.text_field :title %>
+            <h3>Opinion</h3>
+            <%= f.text_area :opinion %>
+            </br>
+            <%= f.submit 'Update Book', :class=>"btn btn-primary btn-lg" %>
+        <% end %>
+</div>
+
+
+

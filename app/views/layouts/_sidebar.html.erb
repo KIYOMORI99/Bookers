@@ -1,0 +1,38 @@
+
+<div class="side-bar">
+	<div class="user-info">
+			
+		<h1>User Info</h1>
+		<div class="profile-image">
+			<%= attachment_image_tag @user, :profile_image,  size: "100x100", format: 'jpeg', fallback: "no_image.jpg" %>
+		</div>
+		</br>
+        <table class="table table-striped">
+    	<tr>
+        	<th>Name</th>
+        	<td><%= @user.name %></td>
+    	</tr>
+    	<tr>
+        	<th>Introduction</th>
+			<td><%= @user.introduction %></td>
+		</tr>
+	   	</table>
+		   	<% if current_user == @user %>
+		   		<%= link_to edit_user_path(@user), :class=>"btn btn-default profile-btn" do %><i class="fas fa-wrench"></i><% end %>
+		   	<% else %>
+		   		<%= link_to (user_path(current_user.id)),:class=>"btn btn-default profile-btn" do %><i class="fas fa-wrench"></i><% end %>
+		   	<% end %>
+        	
+	</div>
+    <div class="post-form">
+		<%= form_for(@post_book, url: post_books_path) do |f| %>
+            <h3>TITLE</h3>
+            <%= f.text_field :title %>
+            <h3>OPINION</h3>
+            <%= f.text_area :opinion %>
+            </br>
+            <%= f.submit 'CREATE BOOK', :class=>"btn btn-block btn-primary btn-lg" %>
+           	<% end %>
+    </div>
+</div>
+

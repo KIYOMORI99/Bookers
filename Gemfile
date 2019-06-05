@@ -10,7 +10,6 @@ end
 gem 'rails', '~> 5.0.7', '>= 5.0.7.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6', group: :development
-gem 'pg', group: :production
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -58,3 +57,4 @@ gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'did_you_mean', group: [:development, :test]
+gem 'pg', group: :production
